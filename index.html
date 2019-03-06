@@ -1,0 +1,30 @@
+<html>
+<head>
+    <script>
+
+window.addEventListener('load', async () => {
+    if (window.ethereum) {
+        window.web3 = new Web3(ethereum);
+        try {
+            // Request account access if needed
+            await ethereum.enable();
+            // Acccounts now exposed
+            const accounts = web3.eth.accounts
+            console.log(`accounts[0] = ${accounts[0]}`)
+        } catch (error) {
+            console.error(error)
+        }
+    }
+    else if (window.web3) {
+        window.web3 = new Web3(web3.currentProvider);
+        const accounts = web3.eth.accounts
+        console.log(`accounts[0] = ${accounts[0]}`)
+    }
+    else {
+        console.log('Non-Ethereum browser detected. You should consider trying MetaMask!');
+    }
+});
+    </script>
+</head>
+
+</html>
